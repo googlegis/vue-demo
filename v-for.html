@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div>
+			<ul id="example-1">
+				<li v-for="item in items" :key="item.message">
+					{{item.message}}
+				</li>
+			</ul>
+		</div>
+		<div id="app-7">
+			<ol>
+				<todo-item
+					v-for="item in groceryList"
+					v-bind:todo="item"
+					v-bind:key="item.id"
+				></todo-item>
+			</ol>
+		</div>
+
+		<ul id="v-for-object" class="demo">
+			<li v-for="value in object">
+				{{ value }}
+			</li>			
+			<li v-for="(value, name) in object">
+				{{name}} : {{value}}
+			</li>
+			<li v-for="(value, name, index) in object">
+				{{index}},{{name}},{{value}}
+			</li>
+		</ul>
+		<ul id="filterExample">
+			<li  v-for="n in evenNumbers">
+				{{n}}
+			</li>	
+		</ul>	
+		<div  id="setsExample">
+			<ul v-for="set in sets">
+				<li v-for="n in even(set)">{{n}}</li>
+			</ul>	
+		</div>
+		<div id="spanExample">
+			<span v-for="n in 10">
+				{{n}}
+			</span>
+		</div>
+		<ul id="template-forExample">
+			<template v-for="item in items">
+				<li>{{item.msg}}</li>
+				<li class="divider" role="presentation"></li>
+			</template>
+		</ul>
+	</body>
+	<script type="application/javascript">
+		var example1 = new Vue({
+			el:'#example-1',
+			data:{
+				items:[
+					{message:'Foo'},
+					{message:'Bar'}
+				]
+			}
+		})
+		
+		Vue.component('todo-item',{
+			props:['todo'],
+			template:'<li>{{todo.text}}</li>'
+		})
+		var app7 = new Vue({
+			el:'#app-7',
+			data:{
+				groceryList:[
+					{id:0,text:'蔬菜'},
+					{id:1,text:'奶酪'},
+					{id:2,text:'其他东西'}
+				]
+			}
+		})
+		
+		
+		var vmd = new Vue({
+			el:'#demo',
+			data:{
+				firstName:'Foo',
+				lastName:'Bar'
+			},
+			computed:{
+				fullname:{
+					get:function(){
+						return this.firstName + ' ' + this.lastName
+					},
+					set:function(newValue){
+						var names = newValue.split(' ')
+						this.firstName = names[0]
+						this.lastName = names[names.length - 1]
+					}
+				}
+			}
+		})
+		
+		
+		var styleExample = new Vue({
+			el:'#styleExample',
+			data:{
+				styleObject:{
+					color:'red',
+					fontSize:'13px'
+				}
+			}
+		})
+		var vForExample = new Vue({			
+			el:'#v-for-object',
+			data:{
+				object:{
+					title:'How to do lists in vue',
+					author:'Jane Doe',
+					publishedAt:'2016-04-10'
+				}
+			}
+		})
+		
+		var filterExample = new Vue({
+			el:'#filterExample',
+			data: {
+			  numbers: [ 1, 2, 3, 4, 5 ]
+			},
+			computed: {
+			  evenNumbers: function () {
+				return this.numbers.filter(function (number) {
+				  return number % 2 === 0
+				})
+			  }
+			}
+		})
+		
+		var setsExample = new Vue({
+			el:'#setsExample',
+			data:{
+				sets:[[1,2,3,4,5],[6,7,8,9,10]]
+			},
+			methods:{
+				even: function(numbers){
+					return numbers.filter(function(number){
+						return number % 2 === 0
+					})
+				}
+			}
+		})
+		
+		var spanExample = new Vue({
+			
+			el:'#spanExample'
+		})
+		
+	</script>
+</html>

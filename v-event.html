@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="example-1">
+			<button v-on:click="counter += 1">Add 1</button>
+			<p> The Button above has been clicked {{counter}} timers.</p>
+		</div>
+		<script type="application/javascript">
+			var example1 = new Vue({
+				el:'#example-1',
+				data:{
+					counter:0
+				}
+			})
+		</script>
+		
+		<div id="example-2">
+			<button v-on:click="greet">Greet</button>
+		</div>
+		<script type="application/javascript">
+			var example2 = new Vue({
+				el:'#example-2',
+				data:{
+					name:'Vue.js'
+				},
+				methods:{
+					greet: function(event){
+						alert('Hello ' + this.name + '!')
+						if(event){
+							alert(event.target.tagName)
+						}
+					}
+				}
+			})
+		</script>
+		
+		<div id="example-3">
+			<button v-on:click="say('hi')">SayHi</button>
+			<button v-on:click="say('what')">SayWhat</button>
+		</div>
+		<script type="application/javascript">
+			var example3 = new Vue({
+				el:'#example-3',
+				methods:{
+					say:function(message){
+					alert(message)
+					}
+				}
+			})
+		</script>
+		
+		<ul id="example-4">
+			<button v-on:click="warn('Form cannot be submitted yet.',$event)">Submit</button>
+		</ul>
+		<script type="application/javascript">
+			var example4 = new Vue({
+				el:'#example-4',
+				methods:{
+					warn:function(mmessage,event){
+						if(event){
+							event.preventDefault()
+						}
+						alert(mmessage)
+					}
+				}
+			})
+		</script>
+		
+		<div id="example-5">
+			<span>Multiline message is:</span>
+			<p style="white-space: pre-line;">{{message}}</p>
+			<br>
+			<textarea v-model="message" placeholder="add multi lines"></textarea>
+		</div>
+		<script type="application/javascript">
+			var example5 = new Vue({
+				el:'#example-5',
+				data:{
+					message:''
+				}
+			})
+		</script>
+		
+		<ul id="example-6">
+			<input v-model="message" placeholder="edit me..">
+			<p>Message is:{{message}}</p>
+		</ul>
+		<script type="application/javascript">
+			var example6 = new Vue({
+				el:'#example-6',
+				data:{
+					message:''
+				}
+			})
+		</script>
+		
+		<ul id="example-7">
+			<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+			<label for="jack">Jack</label>
+			<input type="checkbox" id="john" value="John" v-model="checkedNames">
+			<label for="john">John</label>
+			<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+			<label for="mike">Mike</label>
+			<br>
+			<span>Checked names: {{ checkedNames }}</span>
+		</ul>
+		<script type="application/javascript">
+			var example7 = new Vue({
+				el:'#example-7',
+				data:{
+					checkedNames:[]
+				}
+			})
+		</script>
+		
+		<div id="example-9">
+			<input type="radio" id="one" value="One" v-model="picked">
+			<label for="one">One</label>
+			<br>
+			<input type="radio" id="two" value="Two" v-model="picked">
+			<label for="two">Two</label>
+			<br>
+			<span>Picked:{{picked}}</span>
+		</div>
+		<script>
+			new Vue({
+				el:'#example-9',
+				data:{
+					picked:''
+				}
+			})
+		</script>
+		
+		<div id="example-10">
+			<select v-model="selected">
+				<option disabled value="">请选择</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<span>Selected:{{selected}}</span>
+		</div>
+		<script>
+			new Vue({
+				el:'#example-10',
+				data:{
+					selected:''
+				}
+			})
+		</script>
+				
+		<div id="example-11">
+			<select v-model="selected" multiple style="width: 30%;">
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			<br>
+			<span>Selected:{{selected}}</span>
+		</div>
+		<script>
+			new Vue({
+				el:'#example-11',
+				data:{
+					selected:[]
+				}
+			})
+		</script>
+		
+		<div id="example-12">
+			<select v-model="selected">
+				<option v-for="option in options" v-bind:value="option.value">
+					{{option.text}}
+				</option>
+			</select>
+			<span>Selected:{{selected}}</span>
+		</div>
+		<script>
+			new Vue({
+				el:'#example-12',
+				data:{
+					selected:'A',
+					options:[
+						{text:'One',value:'A'},
+						{text:'Two',value:'B'},
+						{text:'Three',value:'C'}
+					]
+				}
+			})
+		</script>
+		
+		<div id="example-13">
+			<input
+		</div>
+		
+	</body>
+
+</html>

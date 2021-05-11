@@ -37,15 +37,7 @@
 			<p>{{message}}</p>
 			<input v-model="message">
 		</div>
-		<div id="app-7">
-			<ol>
-				<todo-item
-					v-for="item in groceryList"
-					v-bind:todo="item"
-					v-bind:key="item.id"
-				></todo-item>
-			</ol>
-		</div>
+		
 		<div id="example">
 			<p>Original message:"{{ message }}"</p>
 			<p>Computed reversed message:"{{reverseMessage()}}"</p>
@@ -114,58 +106,6 @@
 				message:'Hello Vue!'
 			}
 		})
-		
-		Vue.component('todo-item',{
-			props:['todo'],
-			template:'<li>{{todo.text}}</li>'
-		})
-		var app7 = new Vue({
-			el:'#app-7',
-			data:{
-				groceryList:[
-					{id:0,text:'蔬菜'},
-					{id:1,text:'奶酪'},
-					{id:2,text:'其他东西'}
-				]
-			}
-		})
-		var vm = new Vue({
-			el:'#example',
-			data:{
-				message:'Hello'
-			},
-			computed:{
-				reverseMessage:function(){
-					return this.message.split('').reverse().join('');
-				}
-			},
-			methods:{
-				reverseMessage:function(){
-					return this.message.split('').reverse().join('');
-				}
-			}
-		})
-		
-		var vmd = new Vue({
-			el:'#demo',
-			data:{
-				firstName:'Foo',
-				lastName:'Bar'
-			},
-			computed:{
-				fullname:{
-					get:function(){
-						return this.firstName + ' ' + this.lastName
-					},
-					set:function(newValue){
-						var names = newValue.split(' ')
-						this.firstName = names[0]
-						this.lastName = names[names.length - 1]
-					}
-				}
-			}
-		})
-		
 		var watchExampleVM = new Vue({
 			el:'#watch-example',
 			data:{
@@ -199,15 +139,22 @@
 				}
 			}
 		})
-		
-		var styleExample = new Vue({
-			el:'#styleExample',
+		var vm = new Vue({
+			el:'#example',
 			data:{
-				styleObject:{
-					color:'red',
-					fontSize:'13px'
+				message:'Hello'
+			},
+			computed:{
+				reverseMessage:function(){
+					return this.message.split('').reverse().join('');
+				}
+			},
+			methods:{
+				reverseMessage:function(){
+					return this.message.split('').reverse().join('');
 				}
 			}
 		})
+
 	</script>
 </html>
